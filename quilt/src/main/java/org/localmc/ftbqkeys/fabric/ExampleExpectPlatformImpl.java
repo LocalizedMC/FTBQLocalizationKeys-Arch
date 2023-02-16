@@ -1,13 +1,13 @@
-package net.examplemod.fabric;
+package org.localmc.ftbqkeys.fabric;
 
-import net.examplemod.ExampleExpectPlatform;
+import org.localmc.ftbqkeys.FTBQKeysExpectPlatform;
 import org.quiltmc.loader.api.QuiltLoader;
 
 import java.nio.file.Path;
 
 public class ExampleExpectPlatformImpl {
     /**
-     * This is our actual method to {@link ExampleExpectPlatform#getConfigDirectory()}.
+     * This is our actual method to {@link FTBQKeysExpectPlatform#getConfigDirectory()}.
      */
     public static Path getConfigDirectory() {
         return QuiltLoader.getConfigDir();

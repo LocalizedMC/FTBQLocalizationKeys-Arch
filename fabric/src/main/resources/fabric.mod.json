@@ -16,7 +16,7 @@
   "environment": "*",
   "entrypoints": {
     "main": [
-      "net.examplemod.fabric.ExampleModFabric"
+      "org.localmc.ftbqkeys.fabric.ExampleModFabric"
     ]
   },
   "depends": {

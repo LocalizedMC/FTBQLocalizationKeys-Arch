@@ -1,11 +1,11 @@
-package net.examplemod.fabric;
+package org.localmc.ftbqkeys.fabric;
 
-import net.examplemod.ExampleMod;
+import org.localmc.ftbqkeys.FTBQKeysMod;
 import net.fabricmc.api.ModInitializer;
 
 public class ExampleModFabric implements ModInitializer {
     @Override
     public void onInitialize() {
-        ExampleMod.init();
+        FTBQKeysMod.init();
     }
 }
