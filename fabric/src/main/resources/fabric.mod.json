@@ -3,15 +3,15 @@
   "id": "ftbqkeys",
   "version": "${version}",
   "name": "FTBQLocalizationKeys",
-  "description": "This is an example description! Tell everyone what your mod is about!",
+  "description": "FTBQLocalizationKeys",
   "authors": [
-    "Me!"
+    "TexTrue, LocalizedMC"
   ],
   "contact": {
-    "homepage": "https://fabricmc.net/",
-    "sources": "https://github.com/FabricMC/fabric-example-mod"
+    "homepage": "https://github.com/LocalizedMC/FTBQLocalizationKeys-Arch",
+    "sources": "https://github.com/LocalizedMC/FTBQLocalizationKeys-Arch"
   },
-  "license": "Insert License Here",
+  "license": "CC-BY-4.0",
   "icon": "icon.png",
   "environment": "*",
   "entrypoints": {

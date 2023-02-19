@@ -6,6 +6,9 @@ architectury {
     platformSetupLoomIde()
     fabric()
 }
+
+project.archivesBaseName = rootProject.archivesBaseName + "-Fabric"
+
 /*
 loom {
     accessWidenerPath = project(":common").loom.accessWidenerPath

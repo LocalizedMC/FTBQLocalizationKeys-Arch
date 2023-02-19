@@ -1,15 +1,16 @@
 modLoader = "javafml"
 loaderVersion = "[40,)"
 #issueTrackerURL = ""
-license = "Insert License Here"
+license = "CC-BY-4.0"
 
 [[mods]]
 modId = "ftbqkeys"
 version = "${version}"
 displayName = "FTBQLocalizationKeys"
-authors = "Me!"
+displayURL = "https://github.com/LocalizedMC/FTBQLocalizationKeys-Arch"
+authors = "TexTrue, LocalizedMC"
 description = '''
-This is an example description! Tell everyone what your mod is about!
+FTBQLocalizationKeys
 '''
 #logoFile = ""
 

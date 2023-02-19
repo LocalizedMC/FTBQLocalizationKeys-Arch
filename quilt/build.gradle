@@ -6,10 +6,13 @@ repositories {
     maven { url "https://maven.quiltmc.org/repository/release/" }
 }
 
+project.archivesBaseName = rootProject.archivesBaseName + "-Quilt"
+
 architectury {
     platformSetupLoomIde()
     loader("quilt")
 }
+
 /*
 loom {
     accessWidenerPath = project(":common").loom.accessWidenerPath

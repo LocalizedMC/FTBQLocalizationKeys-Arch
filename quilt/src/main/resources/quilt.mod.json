@@ -5,12 +5,12 @@
     "id": "ftbqkeys",
     "version": "${version}",
     "name": "FTBQLocalizationKeys",
-    "description": "This is an example description! Tell everyone what your mod is about!",
-    "authors": ["Me!"],
+    "description": "FTBQLocalizationKeys",
+    "authors": ["TexTrue, LocalizedMC"],
     "contact": {
-      "sources": "https://github.com/architectury/architectury-templates"
+      "sources": "https://github.com/LocalizedMC/FTBQLocalizationKeys-Arch"
     },
-    "license": "Insert License Here",
+    "license": "CC-BY-4.0",
     "icon": "icon.png",
     "intermediate_mappings": "net.fabricmc:intermediary",
     "environment": "*",

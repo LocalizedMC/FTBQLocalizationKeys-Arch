@@ -35,10 +35,8 @@ public class FTBQKeysCommand {
 
     public static final Path gameDir = CrossPlatformPath.getGameDir();
 
-    public static void serverRegisterCommandsEvent(CommandDispatcher<CommandSourceStack> commandSourceStackCommandDispatcher, Commands.CommandSelection commandSelection) {
-        //CommandDispatcher<CommandSourceStack> commandDispatcher = event.getDispatcher();
-
-        RootCommandNode<CommandSourceStack> rootCommandNode = commandSourceStackCommandDispatcher.getRoot();
+    public static void serverRegisterCommandsEvent(CommandDispatcher<CommandSourceStack> commandDispatcher, Commands.CommandSelection commandSelection) {
+        RootCommandNode<CommandSourceStack> rootCommandNode = commandDispatcher.getRoot();
         LiteralCommandNode<CommandSourceStack> commandNode = Commands.literal("ftbqkey").executes(context -> 0).build();
 
         ArgumentCommandNode<CommandSourceStack, String> argumentCommandNode = Commands.argument("lang", StringArgumentType.word()).suggests((C1, c2) -> SharedSuggestionProvider.suggest(Minecraft.getInstance().getLanguageManager().getLanguages().stream().map(LanguageInfo::getCode).toList().toArray(new String[0]), c2)).executes(Ctx -> {
