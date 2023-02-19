@@ -1,4 +1,4 @@
-package org.localmc.ftbqkeys.command;
+package org.localmc.tools.ftbqkeys.command;
 
 import com.google.common.collect.Lists;
 import com.mojang.brigadier.CommandDispatcher;
@@ -6,7 +6,6 @@ import com.mojang.brigadier.arguments.StringArgumentType;
 import com.mojang.brigadier.tree.ArgumentCommandNode;
 import com.mojang.brigadier.tree.LiteralCommandNode;
 import com.mojang.brigadier.tree.RootCommandNode;
-import dev.architectury.event.events.common.CommandRegistrationEvent;
 import dev.ftb.mods.ftbquests.FTBQuests;
 import dev.ftb.mods.ftbquests.quest.*;
 import dev.ftb.mods.ftbquests.quest.loot.RewardTable;
@@ -21,9 +20,11 @@ import net.minecraft.commands.Commands;
 import net.minecraft.commands.SharedSuggestionProvider;
 import net.minecraft.network.chat.Component;
 import org.apache.commons.io.FileUtils;
-import org.localmc.ftbqkeys.FTBQKeysMod;
+import org.localmc.tools.ftbqkeys.FTBQKeysMod;
+import org.thinkingstudio.crossplatformcore.path.CrossPlatformPath;
 
 import java.io.File;
+import java.nio.file.Path;
 import java.util.List;
 import java.util.StringJoiner;
 import java.util.TreeMap;
@@ -31,6 +32,9 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class FTBQKeysCommand {
+
+    public static final Path gameDir = CrossPlatformPath.getGameDir();
+
     public static void serverRegisterCommandsEvent(CommandDispatcher<CommandSourceStack> commandSourceStackCommandDispatcher, Commands.CommandSelection commandSelection) {
         //CommandDispatcher<CommandSourceStack> commandDispatcher = event.getDispatcher();
 
@@ -39,9 +43,9 @@ public class FTBQKeysCommand {
 
         ArgumentCommandNode<CommandSourceStack, String> argumentCommandNode = Commands.argument("lang", StringArgumentType.word()).suggests((C1, c2) -> SharedSuggestionProvider.suggest(Minecraft.getInstance().getLanguageManager().getLanguages().stream().map(LanguageInfo::getCode).toList().toArray(new String[0]), c2)).executes(Ctx -> {
             try {
-                File parent = new File(FabricLoader.getInstance().getGameDir().toFile(), "ftbqlocalizationkeys");
+                File parent = new File(gameDir.toFile(), "ftbqlocalizationkeys");
                 File transFiles = new File(parent, "kubejs/assets/kubejs/lang/");
-                File questsFolder = new File(FabricLoader.getInstance().getGameDir().toFile(), "config/ftbquests/");
+                File questsFolder = new File(gameDir.toFile(), "config/ftbquests/");
 
                 if (questsFolder.exists()) {
                     File backup = new File(parent, "backup/ftbquests");

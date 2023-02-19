@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
-  "id": "examplemod",
+  "id": "ftbqkeys",
   "version": "${version}",
-  "name": "Example Mod",
+  "name": "FTBQLocalizationKeys",
   "description": "This is an example description! Tell everyone what your mod is about!",
   "authors": [
     "Me!"
@@ -12,11 +12,11 @@
     "sources": "https://github.com/FabricMC/fabric-example-mod"
   },
   "license": "Insert License Here",
-  "icon": "assets/examplemod/icon.png",
+  "icon": "icon.png",
   "environment": "*",
   "entrypoints": {
     "main": [
-      "org.localmc.ftbqkeys.fabric.ExampleModFabric"
+      "org.localmc.tools.ftbqkeys.fabric.FTBQKeysModFabric"
     ]
   },
   "depends": {

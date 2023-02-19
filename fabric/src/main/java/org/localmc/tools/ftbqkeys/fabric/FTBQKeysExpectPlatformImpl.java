@@ -1,11 +1,11 @@
-package org.localmc.ftbqkeys.fabric;
+package org.localmc.tools.ftbqkeys.fabric;
 
-import org.localmc.ftbqkeys.FTBQKeysExpectPlatform;
+import org.localmc.tools.ftbqkeys.FTBQKeysExpectPlatform;
 import net.fabricmc.loader.api.FabricLoader;
 
 import java.nio.file.Path;
 
-public class ExampleExpectPlatformImpl {
+public class FTBQKeysExpectPlatformImpl {
     /**
      * This is our actual method to {@link FTBQKeysExpectPlatform#getConfigDirectory()}.
      */

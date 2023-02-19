@@ -1,4 +1,4 @@
-package org.localmc.ftbqkeys;
+package org.localmc.tools.ftbqkeys;
 
 import dev.architectury.injectables.annotations.ExpectPlatform;
 import dev.architectury.platform.Platform;

@@ -1,11 +1,11 @@
-package org.localmc.ftbqkeys.forge;
+package org.localmc.tools.ftbqkeys.forge;
 
-import org.localmc.ftbqkeys.FTBQKeysExpectPlatform;
+import org.localmc.tools.ftbqkeys.FTBQKeysExpectPlatform;
 import net.minecraftforge.fml.loading.FMLPaths;
 
 import java.nio.file.Path;
 
-public class ExampleExpectPlatformImpl {
+public class FTBQKeysExpectPlatformImpl {
     /**
      * This is our actual method to {@link FTBQKeysExpectPlatform#getConfigDirectory()}.
      */

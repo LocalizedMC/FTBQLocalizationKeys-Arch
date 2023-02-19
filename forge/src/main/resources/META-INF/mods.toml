@@ -4,30 +4,30 @@ loaderVersion = "[40,)"
 license = "Insert License Here"
 
 [[mods]]
-modId = "examplemod"
+modId = "ftbqkeys"
 version = "${version}"
-displayName = "Example Mod"
+displayName = "FTBQLocalizationKeys"
 authors = "Me!"
 description = '''
 This is an example description! Tell everyone what your mod is about!
 '''
 #logoFile = ""
 
-[[dependencies.examplemod]]
+[[dependencies.ftbqkeys]]
 modId = "forge"
 mandatory = true
 versionRange = "[40,)"
 ordering = "NONE"
 side = "BOTH"
 
-[[dependencies.examplemod]]
+[[dependencies.ftbqkeys]]
 modId = "minecraft"
 mandatory = true
 versionRange = "[1.18.2,)"
 ordering = "NONE"
 side = "BOTH"
 
-[[dependencies.examplemod]]
+[[dependencies.ftbqkeys]]
 modId = "architectury"
 mandatory = true
 versionRange = "[4.9.83,)"

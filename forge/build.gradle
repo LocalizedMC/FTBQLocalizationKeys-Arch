@@ -6,7 +6,7 @@ architectury {
     platformSetupLoomIde()
     forge()
 }
-
+/*
 loom {
     accessWidenerPath = project(":common").loom.accessWidenerPath
 
@@ -18,6 +18,7 @@ loom {
         mixinConfig "examplemod.mixins.json"
     }
 }
+ */
 
 configurations {
     common
@@ -34,8 +35,8 @@ repositories {
 
 dependencies {
     forge "net.minecraftforge:forge:${rootProject.forge_version}"
-    // Remove the next line if you don't want to depend on the API
     modApi "dev.architectury:architectury-forge:${rootProject.architectury_version}"
+    modApi "com.github.TexTrueStudio.CrossPlatformCore:CrossPlatformCore-forge:${rootProject.cpc_version}"
 
     modImplementation "dev.ftb.mods:ftb-quests-forge:${rootProject.ftb_quests_version}"
 

@@ -1,26 +1,22 @@
 {
   "schema_version": 1,
-  "mixin": [
-    "examplemod.mixins.json",
-    "examplemod-common.mixins.json"
-  ],
   "quilt_loader": {
     "group": "${group}",
-    "id": "examplemod",
+    "id": "ftbqkeys",
     "version": "${version}",
-    "name": "Example Mod",
+    "name": "FTBQLocalizationKeys",
     "description": "This is an example description! Tell everyone what your mod is about!",
     "authors": ["Me!"],
     "contact": {
       "sources": "https://github.com/architectury/architectury-templates"
     },
     "license": "Insert License Here",
-    "icon": "assets/examplemod/icon.png",
+    "icon": "icon.png",
     "intermediate_mappings": "net.fabricmc:intermediary",
     "environment": "*",
     "entrypoints": {
       "init": [
-        "net.examplemod.quilt.ExampleModQuilt"
+        "org.localmc.tools.ftbqkeys.quilt.FTBQKeysModQuilt"
       ]
     },
     "depends": [
