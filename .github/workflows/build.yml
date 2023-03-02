@@ -42,3 +42,8 @@ jobs:
         with:
           name: 1.18.x-${{ steps.github_short_hash.outputs.result }}-forge
           path: ${{ github.workspace }}/forge/build/libs
+      - name: Upload artifacts (quilt)
+        uses: actions/upload-artifact@v3
+        with:
+          name: 1.18.x-${{ steps.github_short_hash.outputs.result }}-quilt
+          path: ${{ github.workspace }}/quilt/build/libs
