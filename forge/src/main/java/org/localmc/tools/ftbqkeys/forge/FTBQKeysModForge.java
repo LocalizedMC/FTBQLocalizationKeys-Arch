@@ -5,11 +5,11 @@ import org.localmc.tools.ftbqkeys.FTBQKeysMod;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
-@Mod(FTBQKeysMod.MOD_ID)
+@Mod(FTBQKeysMod.MODID)
 public class FTBQKeysModForge {
     public FTBQKeysModForge() {
         // Submit our event bus to let architectury register our content on the right time
-        EventBuses.registerModEventBus(FTBQKeysMod.MOD_ID, FMLJavaModLoadingContext.get().getModEventBus());
+        EventBuses.registerModEventBus(FTBQKeysMod.MODID, FMLJavaModLoadingContext.get().getModEventBus());
         FTBQKeysMod.init();
     }
 }

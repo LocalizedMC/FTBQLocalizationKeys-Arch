@@ -3,17 +3,21 @@ package org.localmc.tools.ftbqkeys;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import dev.architectury.event.events.common.CommandRegistrationEvent;
+import dev.architectury.platform.Platform;
 import org.apache.commons.io.FileUtils;
 import org.localmc.tools.ftbqkeys.command.FTBQKeysCommand;
 
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Path;
 import java.util.Locale;
 import java.util.TreeMap;
 
 public class FTBQKeysMod {
-    public static final String MOD_ID = "ftbqkeys";
+    public static final String MODID = "ftbqkeys";
+
+    public static final Path gameDir = FTBQKeysExpectPlatform.getGameDir();
 
     public static final Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
@@ -23,8 +27,6 @@ public class FTBQKeysMod {
     }
 
     public static void init() {
-        System.out.println(FTBQKeysExpectPlatform.getConfigDirectory().toAbsolutePath().normalize().toString());
-
         CommandRegistrationEvent.EVENT.register(FTBQKeysCommand::serverRegisterCommandsEvent);
     }
 }

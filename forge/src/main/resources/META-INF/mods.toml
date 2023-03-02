@@ -12,7 +12,7 @@ authors = "TexTrue, LocalizedMC"
 description = '''
 FTBQLocalizationKeys
 '''
-#logoFile = ""
+logoFile = "icon"
 
 [[dependencies.ftbqkeys]]
 modId = "forge"

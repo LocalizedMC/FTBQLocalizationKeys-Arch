@@ -1,15 +1,15 @@
 package org.localmc.tools.ftbqkeys.forge;
 
-import org.localmc.tools.ftbqkeys.FTBQKeysExpectPlatform;
 import net.minecraftforge.fml.loading.FMLPaths;
 
 import java.nio.file.Path;
 
 public class FTBQKeysExpectPlatformImpl {
-    /**
-     * This is our actual method to {@link FTBQKeysExpectPlatform#getConfigDirectory()}.
-     */
-    public static Path getConfigDirectory() {
+    public static Path getConfigDir() {
         return FMLPaths.CONFIGDIR.get();
+    }
+
+    public static Path getGameDir() {
+        return FMLPaths.GAMEDIR.get();
     }
 }
