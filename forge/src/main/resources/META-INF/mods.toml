@@ -24,13 +24,13 @@ side = "BOTH"
 [[dependencies.ftbqkeys]]
 modId = "minecraft"
 mandatory = true
-versionRange = "[1.18.2,)"
+versionRange = "[1.18,)"
 ordering = "NONE"
 side = "BOTH"
 
 [[dependencies.ftbqkeys]]
 modId = "architectury"
 mandatory = true
-versionRange = "[4.9.83,)"
+versionRange = "[4,)"
 ordering = "AFTER"
 side = "BOTH"
