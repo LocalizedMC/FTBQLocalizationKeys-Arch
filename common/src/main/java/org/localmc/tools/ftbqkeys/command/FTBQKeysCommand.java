@@ -6,7 +6,6 @@ import com.mojang.brigadier.arguments.StringArgumentType;
 import com.mojang.brigadier.tree.ArgumentCommandNode;
 import com.mojang.brigadier.tree.LiteralCommandNode;
 import com.mojang.brigadier.tree.RootCommandNode;
-import dev.architectury.platform.Platform;
 import dev.ftb.mods.ftbquests.FTBQuests;
 import dev.ftb.mods.ftbquests.quest.*;
 import dev.ftb.mods.ftbquests.quest.loot.RewardTable;
@@ -29,13 +28,14 @@ import java.util.StringJoiner;
 import java.util.TreeMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 public class FTBQKeysCommand {
     public static void serverRegisterCommandsEvent(CommandDispatcher<CommandSourceStack> commandDispatcher, Commands.CommandSelection commandSelection) {
         RootCommandNode<CommandSourceStack> rootCommandNode = commandDispatcher.getRoot();
         LiteralCommandNode<CommandSourceStack> commandNode = Commands.literal("ftbqkey").executes(context -> 0).build();
 
-        ArgumentCommandNode<CommandSourceStack, String> argumentCommandNode = Commands.argument("lang", StringArgumentType.word()).suggests((C1, c2) -> SharedSuggestionProvider.suggest(Minecraft.getInstance().getLanguageManager().getLanguages().stream().map(LanguageInfo::getCode).toList().toArray(new String[0]), c2)).executes(Ctx -> {
+        ArgumentCommandNode<CommandSourceStack, String> argumentCommandNode = Commands.argument("lang", StringArgumentType.word()).suggests((C1, c2) -> SharedSuggestionProvider.suggest(Minecraft.getInstance().getLanguageManager().getLanguages().stream().map(LanguageInfo::getCode).collect(Collectors.toList()).toArray(new String[0]), c2)).executes(Ctx -> {
             try {
                 File parent = new File(FTBQKeysMod.gameDir.toFile(), "ftbqlocalizationkeys");
                 File transFiles = new File(parent, "kubejs/assets/kubejs/lang/");
@@ -59,7 +59,7 @@ public class FTBQKeysCommand {
                 for (int i = 0; i < file.chapterGroups.size(); i++) {
                     ChapterGroup chapterGroup = file.chapterGroups.get(i);
 
-                    if (!chapterGroup.title.isBlank()) {
+                    if (!chapterGroup.title.isEmpty()) {
                         transKeys.put("category." + (i + 1), chapterGroup.title);
                         chapterGroup.title = "{" + "category." + (i + 1) + "}";
                     }
@@ -70,7 +70,7 @@ public class FTBQKeysCommand {
 
                     String prefix = "chapter." + (i + 1);
 
-                    if (!chapter.title.isBlank()) {
+                    if (!chapter.title.isEmpty()) {
                         transKeys.put(prefix + ".title", chapter.title);
                         chapter.title = "{" + prefix + ".title" + "}";
                     }
@@ -95,12 +95,12 @@ public class FTBQKeysCommand {
                     for (int i1 = 0; i1 < chapter.quests.size(); i1++) {
                         Quest quest = chapter.quests.get(i1);
 
-                        if (!quest.title.isBlank()) {
+                        if (!quest.title.isEmpty()) {
                             transKeys.put(prefix + ".quest." + (i1 + 1) + ".title", quest.title);
                             quest.title = "{" + prefix + ".quest." + (i1 + 1) + ".title}";
                         }
 
-                        if (!quest.subtitle.isBlank()) {
+                        if (!quest.subtitle.isEmpty()) {
                             transKeys.put(prefix + ".quest." + (i1 + 1) + ".subtitle", quest.subtitle);
                             quest.subtitle = "{" + prefix + ".quest." + (i1 + 1) + ".subtitle" + "}";
                         }
@@ -117,7 +117,7 @@ public class FTBQKeysCommand {
                                 final String regex = "\\{image:.*?}";
 
                                 if (desc.contains("{image:")) {
-                                    if (!joiner.toString().isBlank()) {
+                                    if (!joiner.toString().isEmpty()) {
                                         transKeys.put(prefix + ".quest." + (i1 + 1) + ".description." + num, joiner.toString());
                                         descList.add("{" + prefix + ".quest." + (i1 + 1) + ".description." + num + "}");
                                         joiner = new StringJoiner("\n");
@@ -132,7 +132,7 @@ public class FTBQKeysCommand {
                                         descList.add(matcher.group(0));
                                     }
                                 } else {
-                                    if (desc.isBlank()) {
+                                    if (desc.isEmpty()) {
                                         joiner.add("\n");
                                     } else {
                                         joiner.add(desc);
@@ -140,7 +140,7 @@ public class FTBQKeysCommand {
                                 }
                             }
 
-                            if (!joiner.toString().isBlank()) {
+                            if (!joiner.toString().isEmpty()) {
                                 transKeys.put(prefix + ".quest." + (i1 + 1) + ".description." + num, joiner.toString());
                                 descList.add("{" + prefix + ".quest." + (i1 + 1) + ".description." + num + "}");
                             }
@@ -152,7 +152,7 @@ public class FTBQKeysCommand {
                         for (int i2 = 0; i2 < quest.tasks.size(); i2++) {
                             Task task = quest.tasks.get(i2);
 
-                            if (!task.title.isBlank()) {
+                            if (!task.title.isEmpty()) {
                                 transKeys.put(prefix + ".quest." + (i1 + 1) + ".task." + (i2 + 1) + ".title", task.title);
                                 task.title = "{" + prefix + ".quest." + (i1 + 1) + ".task." + (i2 + 1) + ".title}";
                             }
@@ -161,7 +161,7 @@ public class FTBQKeysCommand {
                         for (int i2 = 0; i2 < quest.rewards.size(); i2++) {
                             Reward reward = quest.rewards.get(i2);
 
-                            if (!reward.title.isBlank()) {
+                            if (!reward.title.isEmpty()) {
                                 transKeys.put(prefix + ".quest." + (i1 + 1) + ".reward." + (i2 + 1) + ".title", reward.title);
                                 reward.title = "{" + prefix + ".quest." + (i1 + 1) + ".reward." + (i2 + 1) + ".title}";
                             }

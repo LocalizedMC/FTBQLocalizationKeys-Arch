@@ -2,8 +2,7 @@ package org.localmc.tools.ftbqkeys;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import dev.architectury.event.events.common.CommandRegistrationEvent;
-import dev.architectury.platform.Platform;
+import me.shedaniel.architectury.event.events.CommandRegistrationEvent;
 import org.apache.commons.io.FileUtils;
 import org.localmc.tools.ftbqkeys.command.FTBQKeysCommand;
 

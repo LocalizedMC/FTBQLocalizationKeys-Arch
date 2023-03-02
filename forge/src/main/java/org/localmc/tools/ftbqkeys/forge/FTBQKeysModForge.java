@@ -1,6 +1,6 @@
 package org.localmc.tools.ftbqkeys.forge;
 
-import dev.architectury.platform.forge.EventBuses;
+import me.shedaniel.architectury.platform.forge.EventBuses;
 import org.localmc.tools.ftbqkeys.FTBQKeysMod;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
