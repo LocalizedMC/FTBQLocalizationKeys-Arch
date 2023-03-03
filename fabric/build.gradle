@@ -24,7 +24,7 @@ configurations {
 }
 
 repositories {
-    maven { url "https://www.cursemaven.com" }
+    maven { url "https://cursemaven.com" }
 }
 
 dependencies {
