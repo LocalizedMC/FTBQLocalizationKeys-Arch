@@ -1,9 +1,5 @@
 {
   "schema_version": 1,
-  "mixin": [
-    "examplemod.mixins.json",
-    "examplemod-common.mixins.json"
-  ],
   "quilt_loader": {
     "group": "${group}",
     "id": "examplemod",
