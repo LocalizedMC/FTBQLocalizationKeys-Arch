@@ -28,7 +28,7 @@ Support Forge/Fabric/Quilt.
 
 
 ### This mod code reference/use:
-- [LocalizedMC/FTBQLocalizationkeys](https://github.com/LocalizedMC/FTBQLocalizationkeys)
+- [LocalizedMC/FTBQLocalizationkeys](https://github.com/LocalizedMC/FTBQLocalizationkeys) (1.16.5~1.19.x) (CC-BY-4.0)
 - [Horeak/ftb-quest-lang-generator (FTB Quests: Localization keys)](https://github.com/Horeak/ftb-quest-lang-generator) (Forge 1.18+) (CC-BY-4.0)
 - [criscky/ftb-quest-lang-generator](https://github.com/criscky/ftb-quest-lang-generator) (Forge 1.16.5) (CC-BY-4.0)
 - [DM-Fabric-Ports/ftb-quest-lang-generator (FTB Quests: Localization Keys Refabricated)](https://github.com/DM-Fabric-Ports/ftb-quest-lang-generator) (Fabric 1.18+) (CC-BY-4.0)
