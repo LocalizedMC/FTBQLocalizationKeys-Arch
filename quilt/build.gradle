@@ -11,6 +11,8 @@ architectury {
     loader("quilt")
 }
 
+project.archivesBaseName = rootProject.archivesBaseName + "-Quilt"
+
 /*
 loom {
     accessWidenerPath = project(":common").loom.accessWidenerPath
