@@ -1,4 +1,3 @@
-# FTBQLocalizationKeys-Arch
 <center><div align="center">
 
 <img height="120" src="icon/400x400.png" width="120"/>
