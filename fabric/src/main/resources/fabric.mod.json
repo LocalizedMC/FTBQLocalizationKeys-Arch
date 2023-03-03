@@ -2,16 +2,16 @@
   "schemaVersion": 1,
   "id": "ftbqkeys",
   "version": "${version}",
-  "name": "Example Mod",
-  "description": "This is an example description! Tell everyone what your mod is about!",
+  "name": "FTBQLocalizationKeys",
+  "description": "FTBQLocalizationKeys",
   "authors": [
-    "Me!"
+    "TexTrue, LocalizedMC"
   ],
   "contact": {
-    "homepage": "https://fabricmc.net/",
-    "sources": "https://github.com/FabricMC/fabric-example-mod"
+    "homepage": "https://github.com/LocalizedMC/FTBQLocalizationKeys-Arch",
+    "sources": "https://github.com/LocalizedMC/FTBQLocalizationKeys-Arch"
   },
-  "license": "Insert License Here",
+  "license": "CC-BY-4.0",
   "icon": "icon.png",
   "environment": "*",
   "entrypoints": {
@@ -21,7 +21,7 @@
   },
   "depends": {
     "fabric": "*",
-    "minecraft": ">=1.19.2",
-    "architectury": ">=6.2.43"
+    "minecraft": "1.19.x",
+    "architectury": "6.x"
   }
 }
