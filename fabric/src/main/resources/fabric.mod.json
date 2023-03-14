@@ -22,6 +22,8 @@
   "depends": {
     "fabric": "*",
     "minecraft": "1.16.x",
-    "architectury": "1.x"
+    "architectury": "1.x",
+    "kubejs": "*",
+    "ftbquests": "*"
   }
 }

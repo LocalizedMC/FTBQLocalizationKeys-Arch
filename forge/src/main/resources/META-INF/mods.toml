@@ -34,3 +34,15 @@ mandatory = true
 versionRange = "[1,)"
 ordering = "AFTER"
 side = "BOTH"
+
+[[dependencies.ftbqkeys]]
+modId = "ftbquests"
+mandatory = true
+ordering = "AFTER"
+side = "BOTH"
+
+[[dependencies.ftbqkeys]]
+modId = "kubejs"
+mandatory = true
+ordering = "AFTER"
+side = "BOTH"
