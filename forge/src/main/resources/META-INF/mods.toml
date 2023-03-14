@@ -8,6 +8,7 @@ modId = "ftbqkeys"
 version = "${version}"
 displayName = "FTBQLocalizationKeys"
 displayURL = "https://github.com/LocalizedMC/FTBQLocalizationKeys-Arch"
+credits = "BlackAuresArt"
 authors = "TexTrue, LocalizedMC"
 description = '''
 FTBQLocalizationKeys
@@ -31,6 +32,18 @@ side = "BOTH"
 [[dependencies.ftbqkeys]]
 modId = "architectury"
 mandatory = true
-versionRange = "[4,)"
+versionRange = "[3,4)"
+ordering = "AFTER"
+side = "BOTH"
+
+[[dependencies.ftbqkeys]]
+modId = "kubejs"
+mandatory = true
+ordering = "AFTER"
+side = "BOTH"
+
+[[dependencies.ftbqkeys]]
+modId = "ftbquests"
+mandatory = true
 ordering = "AFTER"
 side = "BOTH"

@@ -6,7 +6,6 @@ import com.mojang.brigadier.arguments.StringArgumentType;
 import com.mojang.brigadier.tree.ArgumentCommandNode;
 import com.mojang.brigadier.tree.LiteralCommandNode;
 import com.mojang.brigadier.tree.RootCommandNode;
-import dev.architectury.platform.Platform;
 import dev.ftb.mods.ftbquests.FTBQuests;
 import dev.ftb.mods.ftbquests.quest.*;
 import dev.ftb.mods.ftbquests.quest.loot.RewardTable;
@@ -38,8 +37,8 @@ public class FTBQKeysCommand {
         ArgumentCommandNode<CommandSourceStack, String> argumentCommandNode = Commands.argument("lang", StringArgumentType.word()).suggests((C1, c2) -> SharedSuggestionProvider.suggest(Minecraft.getInstance().getLanguageManager().getLanguages().stream().map(LanguageInfo::getCode).toList().toArray(new String[0]), c2)).executes(Ctx -> {
             try {
                 File parent = new File(FTBQKeysMod.gameDir.toFile(), "ftbqlocalizationkeys");
-                File transFiles = new File(parent, "kubejs/assets/kubejs/lang/");
-                File questsFolder = new File(FTBQKeysMod.gameDir.toFile(), "config/ftbquests/");
+                File transFiles = new File(parent, FTBQKeysMod.kubejsDir.toAbsolutePath() + "/assets/kubejs/lang/");
+                File questsFolder = new File(FTBQKeysMod.configDir.toFile(), "ftbquests");
 
                 if (questsFolder.exists()) {
                     File backup = new File(parent, "backup/ftbquests");

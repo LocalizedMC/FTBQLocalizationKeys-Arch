@@ -13,12 +13,6 @@ architectury {
     loader("quilt")
 }
 
-/*
-loom {
-    accessWidenerPath = project(":common").loom.accessWidenerPath
-}
- */
-
 configurations {
     common
     shadowCommon // Don't use shadow from the shadow plugin because we don't want IDEA to index this.
@@ -34,7 +28,6 @@ dependencies {
         exclude group: "net.fabricmc"
         exclude group: "net.fabricmc.fabric-api"
     }
-    //modApi "com.github.TexTrueStudio.CrossPlatformCore:CrossPlatformCore-fabric:${rootProject.cpc_version}"
 
     modImplementation ("dev.ftb.mods:ftb-quests-fabric:${rootProject.ftb_quests_version}") {
         exclude group: "net.fabricmc"
@@ -56,8 +49,6 @@ processResources {
 }
 
 shadowJar {
-    exclude "architectury.common.json"
-
     configurations = [project.configurations.shadowCommon]
     classifier "dev-shadow"
 }
