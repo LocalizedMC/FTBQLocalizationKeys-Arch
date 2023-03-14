@@ -5,7 +5,7 @@
   "name": "FTBQLocalizationKeys",
   "description": "FTBQLocalizationKeys",
   "authors": [
-    "TexTrue, LocalizedMC"
+    "TexTrue, LocalizedMC","Yjn024","BlackAuresArt"
   ],
   "contact": {
     "homepage": "https://github.com/LocalizedMC/FTBQLocalizationKeys-Arch",
@@ -22,6 +22,8 @@
   "depends": {
     "fabric": "*",
     "minecraft": "1.19.x",
-    "architectury": "6.x"
+    "architectury": "6.x",
+    "kubejs": "*",
+    "ftbquests": "*"
   }
 }

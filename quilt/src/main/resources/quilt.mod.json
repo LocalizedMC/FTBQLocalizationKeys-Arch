@@ -6,7 +6,7 @@
     "version": "${version}",
     "name": "FTBQLocalizationKeys",
     "description": "FTBQLocalizationKeys",
-    "authors": ["TexTrue, LocalizedMC"],
+    "authors": ["TexTrue, LocalizedMC","Yjn024","BlackAuresArt"],
     "contact": {
       "sources": "https://github.com/LocalizedMC/FTBQLocalizationKeys-Arch"
     },
@@ -35,6 +35,14 @@
       {
         "id": "architectury",
         "version": "6.x"
+      },
+      {
+        "id": "kubejs",
+        "version": "*"
+      },
+      {
+        "id": "ftbquests",
+        "version": "*"
       }
     ]
   }
