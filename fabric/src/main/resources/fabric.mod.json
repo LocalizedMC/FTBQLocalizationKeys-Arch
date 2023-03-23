@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "id": "ftbqkeys",
   "version": "${version}",
-  "name": "FTBQLocalizationKeys",
+  "name": "ReFTBQLocalizationKeys",
   "description": "FTBQLocalizationKeys",
   "authors": [
     "TexTrue, LocalizedMC","Yjn024","BlackAuresArt"
