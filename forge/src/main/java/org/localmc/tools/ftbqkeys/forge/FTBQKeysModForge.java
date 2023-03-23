@@ -10,7 +10,6 @@ public class FTBQKeysModForge {
     public FTBQKeysModForge() {
         // Submit our event bus to let architectury register our content on the right time
         EventBuses.registerModEventBus(FTBQKeysMod.MODID, FMLJavaModLoadingContext.get().getModEventBus());
-
         FTBQKeysMod.init();
     }
 }

@@ -5,7 +5,7 @@ import com.google.gson.GsonBuilder;
 import dev.latvian.kubejs.KubeJSPaths;
 import me.shedaniel.architectury.event.events.CommandRegistrationEvent;
 import org.apache.commons.io.FileUtils;
-import org.localmc.tools.ftbqkeys.command.FTBQKeysCommand;
+import org.localmc.tools.ftbqkeys.command.FTBQKeysCommands;
 
 import java.io.File;
 import java.io.IOException;
@@ -28,6 +28,6 @@ public class FTBQKeysMod {
     }
 
     public static void init() {
-        CommandRegistrationEvent.EVENT.register(FTBQKeysCommand::serverRegisterCommandsEvent);
+        CommandRegistrationEvent.EVENT.register(FTBQKeysCommands::registerCommands);
     }
 }
