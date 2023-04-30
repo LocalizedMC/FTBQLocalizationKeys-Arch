@@ -39,13 +39,13 @@ side = "BOTH"
 [[dependencies.ftbqkeys]]
 modId = "kubejs"
 mandatory = true
-versionRange = "*"
+versionRange = "[1605,)"
 ordering = "AFTER"
 side = "BOTH"
 
 [[dependencies.ftbqkeys]]
 modId = "ftbquests"
 mandatory = true
-versionRange = "*"
+versionRange = "[1605,)"
 ordering = "AFTER"
 side = "BOTH"
