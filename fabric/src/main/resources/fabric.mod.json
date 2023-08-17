@@ -3,7 +3,7 @@
   "id": "ftbqkeys",
   "version": "${version}",
   "name": "ReFTBQLocalizationKeys",
-  "description": "FTBQLocalizationKeys",
+  "description": "FTB Quests: Localization keys unofficial architectury port.",
   "authors": [
     "TexTrue, LocalizedMC","Yjn024","BlackAuresArt"
   ],
@@ -22,7 +22,7 @@
   "depends": {
     "fabric": "*",
     "minecraft": "1.16.x",
-    "architectury": "1.x",
+    "architectury": "*",
     "kubejs": "*",
     "ftbquests": "*"
   }
