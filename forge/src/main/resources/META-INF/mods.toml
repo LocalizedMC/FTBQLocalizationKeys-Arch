@@ -12,7 +12,7 @@ authors = "TexTrue, LocalizedMC"
 description = '''
 FTB Quests: Localization keys unofficial architectury port.
 '''
-logoFile = "icon"
+logoFile = "icon.png"
 
 [[dependencies.ftbqkeys]]
 modId = "forge"
