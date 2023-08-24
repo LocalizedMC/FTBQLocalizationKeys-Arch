@@ -19,7 +19,6 @@ public class FTBQKeysMod {
     public static final Path gameDir = FTBQKeysExpectPlatform.getGameDir();
     public static final Path configDir = FTBQKeysExpectPlatform.getConfigDir();
     public static final Path kubejsDir = KubeJSPaths.DIRECTORY;
-
     public static final Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
     public static void saveLang(TreeMap<String, String> transKeys, String lang, File parent) throws IOException {

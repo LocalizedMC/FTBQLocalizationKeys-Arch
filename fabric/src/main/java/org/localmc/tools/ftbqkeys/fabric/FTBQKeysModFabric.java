@@ -7,7 +7,5 @@ public class FTBQKeysModFabric implements ModInitializer {
     @Override
     public void onInitialize() {
         FTBQKeysMod.init();
-
-        //CommandRegistrationCallback.EVENT.register(FTBQKeysCommand::serverRegisterCommandsEvent);
     }
 }
