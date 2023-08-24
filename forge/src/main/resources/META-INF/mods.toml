@@ -13,7 +13,7 @@ authors = "TexTrue, LocalizedMC"
 description = '''
 FTBQLocalizationKeys unofficial architectury port.
 '''
-logoFile = "icon"
+logoFile = "icon.png"
 
 [[dependencies.ftbqkeys]]
 modId = "forge"
