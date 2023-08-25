@@ -10,9 +10,7 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 @Mod(FTBQKeysMod.MODID)
 public class FTBQKeysModForge {
     public FTBQKeysModForge() {
-        // Submit our event bus to let architectury register our content on the right time
         EventBuses.registerModEventBus(FTBQKeysMod.MODID, FMLJavaModLoadingContext.get().getModEventBus());
-
         IEventBus modEventBus = EventBuses.getModEventBus(FTBQKeysMod.MODID).get();
 
         modEventBus.addListener(this::onInitialize);

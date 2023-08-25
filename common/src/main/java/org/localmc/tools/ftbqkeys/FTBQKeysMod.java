@@ -2,8 +2,8 @@ package org.localmc.tools.ftbqkeys;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import dev.latvian.kubejs.KubeJSPaths;
 import me.shedaniel.architectury.event.events.CommandRegistrationEvent;
+import me.shedaniel.architectury.platform.Platform;
 import org.apache.commons.io.FileUtils;
 import org.localmc.tools.ftbqkeys.command.FTBQKeysCommands;
 
@@ -16,10 +16,9 @@ import java.util.TreeMap;
 
 public class FTBQKeysMod {
     public static final String MODID = "ftbqkeys";
-    public static final Path gameDir = FTBQKeysExpectPlatform.getGameDir();
-    public static final Path configDir = FTBQKeysExpectPlatform.getConfigDir();
-    public static final Path kubejsDir = KubeJSPaths.DIRECTORY;
-
+    public static final Path gameDir = Platform.getGameFolder();
+    public static final Path configDir = Platform.getConfigFolder();
+    public static final Path kubejsDir = gameDir.resolve("kubejs").normalize();
     public static final Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
     public static void saveLang(TreeMap<String, String> transKeys, String lang, File parent) throws IOException {
