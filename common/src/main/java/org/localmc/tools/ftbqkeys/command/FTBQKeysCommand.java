@@ -11,9 +11,7 @@ import dev.ftb.mods.ftbquests.quest.*;
 import dev.ftb.mods.ftbquests.quest.loot.RewardTable;
 import dev.ftb.mods.ftbquests.quest.reward.Reward;
 import dev.ftb.mods.ftbquests.quest.task.Task;
-import net.minecraft.Util;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.resources.language.I18n;
 import net.minecraft.client.resources.language.LanguageInfo;
 import net.minecraft.commands.CommandBuildContext;
 import net.minecraft.commands.CommandSourceStack;
@@ -37,8 +35,8 @@ public class FTBQKeysCommand {
 
         ArgumentCommandNode<CommandSourceStack, String> argumentCommandNode = Commands.argument("lang", StringArgumentType.word()).suggests((C1, c2) -> SharedSuggestionProvider.suggest(Minecraft.getInstance().getLanguageManager().getLanguages().stream().map(LanguageInfo::getCode).toList().toArray(new String[0]), c2)).executes(Ctx -> {
             try {
-                File parent = new File(FTBQKeysMod.gameDir.toFile(), "ftbqlocalizationkeys");
-                File transFiles = new File(parent, FTBQKeysMod.kubejsDir.toString() + "/assets/kubejs/lang/");
+                File parent = new File(FTBQKeysMod.gameDir.toFile(), "ftbqkeys");
+                File transFiles = new File(parent, FTBQKeysMod.kubejsDir + "/assets/kubejs/lang/");
                 File questsFolder = new File(FTBQKeysMod.configDir.toFile(), "ftbquests/");
 
                 if (questsFolder.exists()) {
@@ -92,8 +90,8 @@ public class FTBQKeysCommand {
                         }
                     }
 
-                    for (int i1 = 0; i1 < chapter.quests.size(); i1++) {
-                        Quest quest = chapter.quests.get(i1);
+                    for (int i1 = 0; i1 < chapter.getQuests().size(); i1++) {
+                        Quest quest = chapter.getQuests().get(i1);
 
                         if (!quest.title.isBlank()) {
                             transKeys.put(prefix + ".quest." + (i1 + 1) + ".title", quest.title);
@@ -180,7 +178,7 @@ public class FTBQKeysCommand {
                     FTBQKeysMod.saveLang(transKeys, "en_us", transFiles);
                 }
 
-                Ctx.getSource().getPlayerOrException().sendSystemMessage(Component.nullToEmpty(I18n.get("command.ftbqkeys.message" + parent.getAbsolutePath())));
+                Ctx.getSource().getPlayerOrException().sendSystemMessage(Component.translatable("command.ftbqkeys.message" + parent.getAbsolutePath()));
 
             } catch (Exception e) {
                 e.printStackTrace();
