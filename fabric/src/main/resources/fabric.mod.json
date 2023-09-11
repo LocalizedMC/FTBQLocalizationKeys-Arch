@@ -22,7 +22,7 @@
   "depends": {
     "fabric": "*",
     "minecraft": "1.20.x",
-    "architectury": "6.x",
+    "architectury": "9.x",
     "kubejs": "*",
     "ftbquests": "*"
   },
