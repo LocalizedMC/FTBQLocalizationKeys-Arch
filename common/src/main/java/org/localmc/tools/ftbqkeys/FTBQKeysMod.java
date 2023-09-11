@@ -11,8 +11,6 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Path;
-import java.util.Collections;
-import java.util.List;
 import java.util.Locale;
 import java.util.TreeMap;
 
@@ -21,11 +19,6 @@ public class FTBQKeysMod {
     public static final Path gameDir = Platform.getGameFolder();
     public static final Path configDir = Platform.getConfigFolder();
     public static final Gson gson = new GsonBuilder().setPrettyPrinting().create();
-
-    public static List<String> getLangCode() {
-        String language = (Locale.getDefault().getLanguage() + "_" + Locale.getDefault().getCountry()).toLowerCase();
-        return Collections.singletonList(language);
-    }
 
     public static void saveLang(TreeMap<String, String> transKeys, String lang, File parent) throws IOException {
         File fe = new File(parent, lang.toLowerCase(Locale.ROOT) + ".json");

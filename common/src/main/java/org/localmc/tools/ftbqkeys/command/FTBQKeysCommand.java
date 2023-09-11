@@ -18,6 +18,7 @@ import net.minecraft.network.chat.Component;
 import org.apache.commons.io.FileUtils;
 import org.localmc.tools.ftbqkeys.FTBQKeysMod;
 import org.localmc.tools.ftbqkeys.mixin.BaseQuestFileAccessor;
+import org.localmc.tools.ftbqkeys.mixin.ChapterImageMixin;
 
 import java.io.File;
 import java.util.List;
@@ -80,11 +81,12 @@ public class FTBQKeysCommand {
 
                     for (int i1 = 0; i1 < chapter.images().toList().size(); i1++) {
                         ChapterImage chapterImage = chapter.images().toList().get(i1);
+                        List<String> hover = new ChapterImageMixin().getHovers();
 
-                        if (!chapterImage.hover.isEmpty()) {
-                            transKeys.put(prefix + ".image." + (i1 + 1), String.join("\n", chapterImage.hover));
-                            chapterImage.hover.clear();
-                            chapterImage.hover.add("{" + prefix + ".image." + (i1 + 1) + "}");
+                        if (!hover.isEmpty()) {
+                            transKeys.put(prefix + ".image." + (i1 + 1), String.join("\n", hover));
+                            hover.clear();
+                            hover.add("{" + prefix + ".image." + (i1 + 1) + "}");
                         }
                     }
 
