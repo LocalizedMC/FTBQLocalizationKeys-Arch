@@ -11,15 +11,13 @@ import dev.ftb.mods.ftbquests.quest.*;
 import dev.ftb.mods.ftbquests.quest.loot.RewardTable;
 import dev.ftb.mods.ftbquests.quest.reward.Reward;
 import dev.ftb.mods.ftbquests.quest.task.Task;
-import net.minecraft.client.Minecraft;
 import net.minecraft.commands.CommandBuildContext;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
-import net.minecraft.commands.SharedSuggestionProvider;
 import net.minecraft.network.chat.Component;
 import org.apache.commons.io.FileUtils;
 import org.localmc.tools.ftbqkeys.FTBQKeysMod;
-import org.localmc.tools.ftbqkeys.api.BaseQuestFileExtension;
+import org.localmc.tools.ftbqkeys.mixin.BaseQuestFileAccessor;
 
 import java.io.File;
 import java.util.List;
@@ -33,7 +31,7 @@ public class FTBQKeysCommand {
         RootCommandNode<CommandSourceStack> rootCommandNode = commandDispatcher.getRoot();
         LiteralCommandNode<CommandSourceStack> commandNode = Commands.literal("ftbqkey").executes(context -> 0).build();
 
-        ArgumentCommandNode<CommandSourceStack, String> argumentCommandNode = Commands.argument("lang", StringArgumentType.word()).suggests((C1, c2) -> SharedSuggestionProvider.suggest(Minecraft.getInstance().getLanguageManager().getLanguages().stream().map(LanguageInfo::getCode).toList().toArray(new String[0]), c2)).executes(Ctx -> {
+        ArgumentCommandNode<CommandSourceStack, String> argumentCommandNode = Commands.argument("lang", StringArgumentType.word()).executes(Ctx -> {
             try {
                 File parent = new File(FTBQKeysMod.gameDir.toFile(), "ftbqkeys");
                 File transFiles = new File(parent, "kubejs/assets/kubejs/lang/");
@@ -54,8 +52,8 @@ public class FTBQKeysCommand {
                     table.getRawTitle().compareTo("{" + "loot_table." + (i + 1) + "}");
                 }
 
-                for (int i = 0; i < ((BaseQuestFileExtension) file).getChapterGroups().size(); i++) {
-                    ChapterGroup chapterGroup = ((BaseQuestFileExtension) file).getChapterGroups().get(i);
+                for (int i = 0; i < ((BaseQuestFileAccessor) file).getChapterGroups().size(); i++) {
+                    ChapterGroup chapterGroup = ((BaseQuestFileAccessor) file).getChapterGroups().get(i);
 
                     if (!chapterGroup.getRawTitle().isBlank()) {
                         transKeys.put("category." + (i + 1), chapterGroup.getRawTitle());
@@ -80,8 +78,8 @@ public class FTBQKeysCommand {
                     }
 
 
-                    for (int i1 = 0; i1 < chapter.images.size(); i1++) {
-                        ChapterImage chapterImage = chapter.images.get(i1);
+                    for (int i1 = 0; i1 < chapter.images().toList().size(); i1++) {
+                        ChapterImage chapterImage = chapter.images().toList().get(i1);
 
                         if (!chapterImage.hover.isEmpty()) {
                             transKeys.put(prefix + ".image." + (i1 + 1), String.join("\n", chapterImage.hover));
@@ -148,7 +146,7 @@ public class FTBQKeysCommand {
                         }
 
                         for (int i2 = 0; i2 < quest.getTasks().size(); i2++) {
-                            Task task = quest.getTasks().get(i2);
+                            Task task = quest.getQuestFile().getTask(i2);
 
                             if (!task.getRawTitle().isBlank()) {
                                 transKeys.put(prefix + ".quest." + (i1 + 1) + ".task." + (i2 + 1) + ".title", task.getRawTitle());
@@ -157,7 +155,7 @@ public class FTBQKeysCommand {
                         }
 
                         for (int i2 = 0; i2 < quest.getRewards().size(); i2++) {
-                            Reward reward = quest.getRewards().get(i2);
+                            Reward reward = quest.getQuestFile().getReward(i2);
 
                             if (!reward.getRawTitle().isBlank()) {
                                 transKeys.put(prefix + ".quest." + (i1 + 1) + ".reward." + (i2 + 1) + ".title", reward.getRawTitle());
