@@ -25,5 +25,8 @@
     "architectury": "6.x",
     "kubejs": "*",
     "ftbquests": "*"
-  }
+  },
+  "mixins": [
+    "ftbqkeys.common.mixins.json"
+  ]
 }

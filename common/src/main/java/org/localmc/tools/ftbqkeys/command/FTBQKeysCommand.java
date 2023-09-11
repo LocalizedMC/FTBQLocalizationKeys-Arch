@@ -6,13 +6,12 @@ import com.mojang.brigadier.arguments.StringArgumentType;
 import com.mojang.brigadier.tree.ArgumentCommandNode;
 import com.mojang.brigadier.tree.LiteralCommandNode;
 import com.mojang.brigadier.tree.RootCommandNode;
-import dev.ftb.mods.ftbquests.FTBQuests;
+import dev.ftb.mods.ftbquests.api.FTBQuestsAPI;
 import dev.ftb.mods.ftbquests.quest.*;
 import dev.ftb.mods.ftbquests.quest.loot.RewardTable;
 import dev.ftb.mods.ftbquests.quest.reward.Reward;
 import dev.ftb.mods.ftbquests.quest.task.Task;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.resources.language.LanguageInfo;
 import net.minecraft.commands.CommandBuildContext;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
@@ -20,6 +19,7 @@ import net.minecraft.commands.SharedSuggestionProvider;
 import net.minecraft.network.chat.Component;
 import org.apache.commons.io.FileUtils;
 import org.localmc.tools.ftbqkeys.FTBQKeysMod;
+import org.localmc.tools.ftbqkeys.api.BaseQuestFileExtension;
 
 import java.io.File;
 import java.util.List;
@@ -45,21 +45,21 @@ public class FTBQKeysCommand {
                 }
 
                 TreeMap<String, String> transKeys = new TreeMap<>();
-                QuestFile file = FTBQuests.PROXY.getQuestFile(false);
+                BaseQuestFile file = FTBQuestsAPI.api().getQuestFile(false);
 
-                for (int i = 0; i < file.rewardTables.size(); i++) {
-                    RewardTable table = file.rewardTables.get(i);
+                for (int i = 0; i < file.getRewardTables().size(); i++) {
+                    RewardTable table = file.getRewardTables().get(i);
 
-                    transKeys.put("loot_table." + (i + 1), table.title);
-                    table.title = "{" + "loot_table." + (i + 1) + "}";
+                    transKeys.put("loot_table." + (i + 1), table.getRawTitle());
+                    table.getRawTitle().compareTo("{" + "loot_table." + (i + 1) + "}");
                 }
 
-                for (int i = 0; i < file.chapterGroups.size(); i++) {
-                    ChapterGroup chapterGroup = file.chapterGroups.get(i);
+                for (int i = 0; i < ((BaseQuestFileExtension) file).getChapterGroups().size(); i++) {
+                    ChapterGroup chapterGroup = ((BaseQuestFileExtension) file).getChapterGroups().get(i);
 
-                    if (!chapterGroup.title.isBlank()) {
-                        transKeys.put("category." + (i + 1), chapterGroup.title);
-                        chapterGroup.title = "{" + "category." + (i + 1) + "}";
+                    if (!chapterGroup.getRawTitle().isBlank()) {
+                        transKeys.put("category." + (i + 1), chapterGroup.getRawTitle());
+                        chapterGroup.getRawTitle().compareTo("{" + "category." + (i + 1) + "}");
                     }
                 }
 
@@ -68,15 +68,15 @@ public class FTBQKeysCommand {
 
                     String prefix = "chapter." + (i + 1);
 
-                    if (!chapter.title.isBlank()) {
-                        transKeys.put(prefix + ".title", chapter.title);
-                        chapter.title = "{" + prefix + ".title" + "}";
+                    if (!chapter.getRawTitle().isBlank()) {
+                        transKeys.put(prefix + ".title", chapter.getRawTitle());
+                        chapter.getRawTitle().compareTo("{" + prefix + ".title" + "}");
                     }
 
-                    if (chapter.subtitle.size() > 0) {
-                        transKeys.put(prefix + ".subtitle", String.join("\n", chapter.subtitle));
-                        chapter.subtitle.clear();
-                        chapter.subtitle.add("{" + prefix + ".subtitle" + "}");
+                    if (chapter.getRawSubtitle().size() > 0) {
+                        transKeys.put(prefix + ".subtitle", String.join("\n", chapter.getRawTitle()));
+                        chapter.getRawSubtitle().clear();
+                        chapter.getRawSubtitle().add("{" + prefix + ".subtitle" + "}");
                     }
 
 
@@ -93,24 +93,24 @@ public class FTBQKeysCommand {
                     for (int i1 = 0; i1 < chapter.getQuests().size(); i1++) {
                         Quest quest = chapter.getQuests().get(i1);
 
-                        if (!quest.title.isBlank()) {
-                            transKeys.put(prefix + ".quest." + (i1 + 1) + ".title", quest.title);
-                            quest.title = "{" + prefix + ".quest." + (i1 + 1) + ".title}";
+                        if (!quest.getRawTitle().isBlank()) {
+                            transKeys.put(prefix + ".quest." + (i1 + 1) + ".title", quest.getRawTitle());
+                            quest.getRawTitle().compareTo("{" + prefix + ".quest." + (i1 + 1) + ".title}");
                         }
 
-                        if (!quest.subtitle.isBlank()) {
-                            transKeys.put(prefix + ".quest." + (i1 + 1) + ".subtitle", quest.subtitle);
-                            quest.subtitle = "{" + prefix + ".quest." + (i1 + 1) + ".subtitle" + "}";
+                        if (!quest.getRawSubtitle().isBlank()) {
+                            transKeys.put(prefix + ".quest." + (i1 + 1) + ".subtitle", quest.getRawTitle());
+                            quest.getRawSubtitle().compareTo("{" + prefix + ".quest." + (i1 + 1) + ".subtitle" + "}");
                         }
 
-                        if (quest.description.size() > 0) {
+                        if (quest.getRawDescription().size() > 0) {
                             List<String> descList = Lists.newArrayList();
 
                             StringJoiner joiner = new StringJoiner("\n");
                             int num = 1;
 
-                            for (int i2 = 0; i2 < quest.description.size(); i2++) {
-                                String desc = quest.description.get(i2);
+                            for (int i2 = 0; i2 < quest.getRawDescription().size(); i2++) {
+                                String desc = quest.getRawDescription().get(i2);
 
                                 final String regex = "\\{image:.*?}";
 
@@ -143,25 +143,25 @@ public class FTBQKeysCommand {
                                 descList.add("{" + prefix + ".quest." + (i1 + 1) + ".description." + num + "}");
                             }
 
-                            quest.description.clear();
-                            quest.description.addAll(descList);
+                            quest.getRawDescription().clear();
+                            quest.getRawDescription().addAll(descList);
                         }
 
-                        for (int i2 = 0; i2 < quest.tasks.size(); i2++) {
-                            Task task = quest.tasks.get(i2);
+                        for (int i2 = 0; i2 < quest.getTasks().size(); i2++) {
+                            Task task = quest.getTasks().get(i2);
 
-                            if (!task.title.isBlank()) {
-                                transKeys.put(prefix + ".quest." + (i1 + 1) + ".task." + (i2 + 1) + ".title", task.title);
-                                task.title = "{" + prefix + ".quest." + (i1 + 1) + ".task." + (i2 + 1) + ".title}";
+                            if (!task.getRawTitle().isBlank()) {
+                                transKeys.put(prefix + ".quest." + (i1 + 1) + ".task." + (i2 + 1) + ".title", task.getRawTitle());
+                                task.getRawTitle().compareTo("{" + prefix + ".quest." + (i1 + 1) + ".task." + (i2 + 1) + ".title}");
                             }
                         }
 
-                        for (int i2 = 0; i2 < quest.rewards.size(); i2++) {
-                            Reward reward = quest.rewards.get(i2);
+                        for (int i2 = 0; i2 < quest.getRewards().size(); i2++) {
+                            Reward reward = quest.getRewards().get(i2);
 
-                            if (!reward.title.isBlank()) {
-                                transKeys.put(prefix + ".quest." + (i1 + 1) + ".reward." + (i2 + 1) + ".title", reward.title);
-                                reward.title = "{" + prefix + ".quest." + (i1 + 1) + ".reward." + (i2 + 1) + ".title}";
+                            if (!reward.getRawTitle().isBlank()) {
+                                transKeys.put(prefix + ".quest." + (i1 + 1) + ".reward." + (i2 + 1) + ".title", reward.getRawTitle());
+                                reward.getRawTitle().compareTo("{" + prefix + ".quest." + (i1 + 1) + ".reward." + (i2 + 1) + ".title}");
                             }
                         }
                     }
