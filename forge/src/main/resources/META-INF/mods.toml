@@ -32,20 +32,20 @@ side = "BOTH"
 [[dependencies.ftbqkeys]]
 modId = "architectury"
 mandatory = true
-versionRange = "[4,)"
+versionRange = "*"
 ordering = "AFTER"
 side = "BOTH"
 
 [[dependencies.ftbqkeys]]
 modId = "kubejs"
 mandatory = true
-versionRange = "[1802,)"
+versionRange = "*"
 ordering = "AFTER"
 side = "BOTH"
 
 [[dependencies.ftbqkeys]]
 modId = "ftbquests"
 mandatory = true
-versionRange = "[1802,)"
+versionRange = "*"
 ordering = "AFTER"
 side = "BOTH"
