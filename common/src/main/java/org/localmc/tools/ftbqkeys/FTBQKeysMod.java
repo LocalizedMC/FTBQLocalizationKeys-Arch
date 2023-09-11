@@ -18,8 +18,6 @@ public class FTBQKeysMod {
     public static final String MODID = "ftbqkeys";
     public static final Path gameDir = Platform.getGameFolder();
     public static final Path configDir = Platform.getConfigFolder();
-    public static final Path kubejsDir = gameDir.resolve("kubejs").normalize();
-
     public static final Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
     public static void saveLang(TreeMap<String, String> transKeys, String lang, File parent) throws IOException {

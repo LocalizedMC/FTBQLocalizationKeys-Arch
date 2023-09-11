@@ -36,7 +36,7 @@ public class FTBQKeysCommand {
         ArgumentCommandNode<CommandSourceStack, String> argumentCommandNode = Commands.argument("lang", StringArgumentType.word()).suggests((C1, c2) -> SharedSuggestionProvider.suggest(Minecraft.getInstance().getLanguageManager().getLanguages().stream().map(LanguageInfo::getCode).toList().toArray(new String[0]), c2)).executes(Ctx -> {
             try {
                 File parent = new File(FTBQKeysMod.gameDir.toFile(), "ftbqkeys");
-                File transFiles = new File(parent, FTBQKeysMod.kubejsDir + "/assets/kubejs/lang/");
+                File transFiles = new File(parent, "kubejs/assets/kubejs/lang/");
                 File questsFolder = new File(FTBQKeysMod.configDir.toFile(), "ftbquests/");
 
                 if (questsFolder.exists()) {
