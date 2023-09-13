@@ -14,13 +14,13 @@ import dev.ftb.mods.ftbquests.quest.reward.Reward;
 import dev.ftb.mods.ftbquests.quest.task.Task;
 import me.shedaniel.architectury.event.events.CommandRegistrationEvent;
 import me.shedaniel.architectury.platform.Platform;
-import net.minecraft.Util;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.resources.language.LanguageInfo;
-import net.minecraft.commands.CommandSourceStack;
-import net.minecraft.commands.Commands;
-import net.minecraft.commands.SharedSuggestionProvider;
-import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.resource.language.LanguageDefinition;
+import net.minecraft.command.CommandSource;
+import net.minecraft.server.command.CommandManager;
+import net.minecraft.server.command.ServerCommandSource;
+import net.minecraft.text.TranslatableText;
+import net.minecraft.util.Util;
 import org.apache.commons.io.FileUtils;
 
 import java.io.File;
@@ -28,6 +28,7 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Path;
 import java.util.*;
+import java.util.function.Function;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
@@ -38,6 +39,20 @@ public class FTBQKeysMod {
     public static final Path configDir = Platform.getConfigFolder();
     public static final Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
+    // https://github.com/shedaniel/RoughlyEnoughItems/blob/21d144a7b605169578ba8e1dc1663d1ab042660d/api/src/main/java/me/shedaniel/rei/api/client/search/method/InputMethod.java#L60C42-L60C42
+    private static List<String> getLocales() {
+        return map(MinecraftClient.getInstance().getLanguageManager().getAllLanguages(), LanguageDefinition::getCode);
+    }
+
+    // https://github.com/shedaniel/RoughlyEnoughItems/blob/21d144a7b605169578ba8e1dc1663d1ab042660d/api/src/main/java/me/shedaniel/rei/api/common/util/CollectionUtils.java#L125
+    private static <T, R> List<R> map(Collection<T> list, Function<T, R> function) {
+        List<R> l = new ArrayList<>(list.size() + 1);
+        for (T t : list) {
+            l.add(function.apply(t));
+        }
+        return l;
+    }
+
     public static void saveLang(TreeMap<String, String> transKeys, String lang, File parent) throws IOException {
         File fe = new File(parent, lang.toLowerCase(Locale.ROOT) + ".json");
         FileUtils.write(fe, FTBQKeysMod.gson.toJson(transKeys), StandardCharsets.UTF_8);
@@ -45,17 +60,10 @@ public class FTBQKeysMod {
 
     public static void init() {
         CommandRegistrationEvent.EVENT.register((dispatcher, selection) -> {
-            RootCommandNode<CommandSourceStack> rootCommandNode = dispatcher.getRoot();
-            LiteralCommandNode<CommandSourceStack> commandNode = Commands.literal("ftbqkey").executes(context -> 0).build();
+            RootCommandNode<ServerCommandSource> rootCommandNode = dispatcher.getRoot();
+            LiteralCommandNode<ServerCommandSource> commandNode = CommandManager.literal("ftbqkey").executes(context -> 0).build();
 
-            ArgumentCommandNode<CommandSourceStack, String> argumentCommandNode = Commands.argument("lang", StringArgumentType.word()).suggests((commandContext, suggestionsBuilder) -> {
-                List<String> list = new ArrayList<>();
-                for (LanguageInfo languageInfo : Minecraft.getInstance().getLanguageManager().getLanguages()) {
-                    String code = languageInfo.getCode();
-                    list.add(code);
-                }
-                return SharedSuggestionProvider.suggest(list.toArray(new String[0]), suggestionsBuilder);
-            }).executes(context -> {
+            ArgumentCommandNode<ServerCommandSource, String> argumentCommandNode = CommandManager.argument("lang", StringArgumentType.word()).suggests((commandContext, suggestionsBuilder) -> CommandSource.suggestMatching(getLocales().toArray(new String[0]), suggestionsBuilder)).executes(context -> {
                 try {
                     File parent = new File(FTBQKeysMod.gameDir.toFile(), "ftbqkeys");
                     File transFiles = new File(parent, "export-lang/");
@@ -200,7 +208,7 @@ public class FTBQKeysMod {
                         FTBQKeysMod.saveLang(transKeys, "en_us", transFiles);
                     }
 
-                    context.getSource().getPlayerOrException().sendMessage(new TranslatableComponent("command.ftbqkeys.message" + parent.getAbsolutePath()), Util.NIL_UUID);
+                    context.getSource().getPlayer().sendSystemMessage(new TranslatableText("command.ftbqkeys.message" + parent.getAbsolutePath()), Util.NIL_UUID);
 
                 } catch (Exception e) {
                     e.printStackTrace();
