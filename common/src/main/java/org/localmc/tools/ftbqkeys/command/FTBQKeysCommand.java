@@ -35,7 +35,7 @@ public class FTBQKeysCommand {
         ArgumentCommandNode<CommandSourceStack, String> argumentCommandNode = Commands.argument("lang", StringArgumentType.word()).executes(Ctx -> {
             try {
                 File parent = new File(FTBQKeysMod.gameDir.toFile(), "ftbqkeys");
-                File transFiles = new File(parent, "kubejs/assets/kubejs/lang/");
+                File transFiles = new File(parent, "export-lang/");
                 File questsFolder = new File(FTBQKeysMod.configDir.toFile(), "ftbquests/");
 
                 if (questsFolder.exists()) {
