@@ -31,7 +31,6 @@ import java.util.*;
 import java.util.function.Function;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import java.util.stream.Collectors;
 
 public class FTBQKeysMod {
     public static final String MODID = "ftbqkeys";
@@ -208,7 +207,7 @@ public class FTBQKeysMod {
                         FTBQKeysMod.saveLang(transKeys, "en_us", transFiles);
                     }
 
-                    context.getSource().getPlayer().sendSystemMessage(new TranslatableText("command.ftbqkeys.message" + parent.getAbsolutePath()), Util.NIL_UUID);
+                    context.getSource().getPlayer().sendSystemMessage(new TranslatableText("command.ftbqkeys.message", parent.getAbsolutePath()), Util.NIL_UUID);
 
                 } catch (Exception e) {
                     e.printStackTrace();

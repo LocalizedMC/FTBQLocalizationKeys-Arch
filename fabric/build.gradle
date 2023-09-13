@@ -7,7 +7,7 @@ architectury {
     fabric()
 }
 
-project.archivesBaseName = rootProject.archivesBaseName + "-Fabric"
+project.archivesBaseName = rootProject.archivesBaseName + "-fabric"
 
 configurations {
     common

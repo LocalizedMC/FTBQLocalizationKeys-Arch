@@ -7,7 +7,7 @@ architectury {
     forge()
 }
 
-project.archivesBaseName = rootProject.archivesBaseName + "-Forge"
+project.archivesBaseName = rootProject.archivesBaseName + "-forge"
 
 configurations {
     common
