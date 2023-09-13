@@ -110,7 +110,7 @@ public class FTBQKeysMod {
 
 
                         for (int i1 = 0; i1 < chapter.images().toList().size(); i1++) {
-                            ChapterImage chapterImage = chapter.images().toList().get(i1);
+                            //ChapterImage chapterImage = chapter.images().toList().get(i1);
                             List<String> hover = new ChapterImageMixin().getHovers();
 
                             if (!hover.isEmpty()) {
