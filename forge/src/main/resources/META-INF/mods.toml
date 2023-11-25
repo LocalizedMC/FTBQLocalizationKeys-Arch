@@ -37,13 +37,6 @@ ordering = "AFTER"
 side = "BOTH"
 
 [[dependencies.ftbqkeys]]
-modId = "kubejs"
-mandatory = true
-versionRange = "*"
-ordering = "AFTER"
-side = "BOTH"
-
-[[dependencies.ftbqkeys]]
 modId = "ftbquests"
 mandatory = true
 versionRange = "*"
