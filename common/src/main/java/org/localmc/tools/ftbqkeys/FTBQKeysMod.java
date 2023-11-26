@@ -65,7 +65,7 @@ public class FTBQKeysMod {
             ArgumentCommandNode<ServerCommandSource, String> argumentCommandNode = CommandManager.argument("lang", StringArgumentType.word()).suggests((commandContext, suggestionsBuilder) -> CommandSource.suggestMatching(getLocales().toArray(new String[0]), suggestionsBuilder)).executes(context -> {
                 try {
                     File parent = new File(FTBQKeysMod.gameDir.toFile(), "ftbqkeys");
-                    File transFiles = new File(parent, "export-lang/");
+                    File transFiles = new File(parent, "exportlang/");
                     File questsFolder = new File(FTBQKeysMod.configDir.toFile(), "ftbquests/");
 
                     if (questsFolder.exists()) {
